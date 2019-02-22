@@ -1,0 +1,10 @@
+// _base.scss
+
+html {
+  @include font-size($font-size-base);
+}
+
+body {
+  @include font-size(12px);
+  font-family: font('primary');
+}

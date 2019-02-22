@@ -1,0 +1,24 @@
+{
+  "name": "init-scss-package",
+  "version": "1.0.0",
+  "description": "Init project with Gulp & Sass architecture",
+  "main": "index.js",
+  "scripts": {
+    "watch": "gulp watch",
+    "dist-dev": "gulp dist-dev",
+    "dist-prod": "gulp dist-prod"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cssnano": "^4.1.10",
+    "gulp": "^4.0.0",
+    "gulp-autoprefixer": "^6.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-postcss": "^8.0.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-uglify": "^3.0.1",
+    "postcss-scss": "^2.0.0"
+  }
+}

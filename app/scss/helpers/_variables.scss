@@ -1,0 +1,94 @@
+// _variables.scss
+
+$screen-xs: 480px; // @respond-to ('small') and overwrite bootstrap grid. Overwrite grid
+$screen-sm: 768px; // @respond-to ('medium') and overwrite bootstrap grid. Overwrite grid
+$screen-md: 1024px; // @respond-to ('large') and overwrite bootstrap grid. Overwrite grid
+$screen-lg: 1200px; // @respond-to ('huge') and overwrite bootstrap grid. Overwrite grid
+
+$font-size-base: 14px; // required by rem() mixins
+$transition-duration: 500ms; // required by transition() mixins
+$icomoon-font-path: '../../fonts/icon-xxx';
+
+//-------------------------------------------------------------------//
+
+/// Colors map, gathering all colors of the application
+/// @access private
+/// @type Map
+/// @prop {String} key - color name
+/// @prop {Hex} value - color value mapped to the key
+$color-key: 'base' !default;
+$colors: (
+  'primary': (
+    'base': #f3e35b,
+    'invert': #1e1e1e
+  ),
+  'secondary': (
+    'base': #1e1e1e,
+    'invert': #fff
+  ),
+  'foreground':(
+    'base': #1e1e1e,
+    'invert': #fff
+  ),
+  'background': (
+    'base': #fff,
+    'invert': #1e1e1e
+  ),
+  'gray': (
+    'base': #949494,
+    'light': #b0b0b0,
+    'super-light': #d8d8d8,
+    'extra-light': #eee,
+    'invert': #fff,
+  ),
+  'validation': (
+    'base': #fff,
+    'ok': #7ec730, // OK
+    'no': #ff0000, // ECHEC
+    'stop': #2f67f5, // PARTIEL
+    'progress': #f5882f, // PROGRESS
+    'invert': #fff
+  )
+);
+
+/// Fonts map, gathering all fonts of the application
+/// @access private
+/// @type Map
+/// @prop {String} key - font name
+/// @prop {String} value - font value mapped to the key
+$font-key: 'base' !default;
+$fonts: (
+  'primary': (
+    'base': ('Open Sans', sans-serif)
+  ),
+  'secondary': (
+    'base': ('Rajdhani', sans-serif),
+  ),
+  'icon': (
+    'base':('icon-scuf')
+  )
+);
+
+/// Breakpoints map, gathering all breakpoints of the application
+/// @access private
+/// @type Map
+/// @prop {String} key - Size's name
+/// @prop {Number} value - min-width value mapped to the key
+$breakpoints: (
+  'small': (min-width: $screen-xs), // never used normaly
+  'medium': (min-width: $screen-sm),
+  'large': (min-width: $screen-md),
+  'huge': (min-width: $screen-lg),
+  'insane': (min-width: 2560px) // >4K ('-.-)
+);
+/// Z-indexes map, gathering all Z layers of the application
+/// @access private
+/// @type Map
+/// @prop {String} key - Layers name
+/// @prop {Number} value - Z value mapped to the key
+$z-indexes: (
+  'modal': 5000,
+  'dropdown': 4000,
+  'default': 1,
+  'below': -1,
+);

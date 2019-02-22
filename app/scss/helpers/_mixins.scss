@@ -1,0 +1,142 @@
+/// Helper to clear inner floats
+/// @access public
+/// @link http://nicolasgallagher.com/micro-clearfix-hack/ Micro Clearfix
+@mixin clearfix {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+/// Responsive breakpoint manager
+/// @access public
+/// @param {String} $breakpoint - Breakpoint
+/// @requires $breakpoints
+@mixin respond-to($breakpoint) {
+  $raw-query: map-get($breakpoints, $breakpoint);
+
+  @if $raw-query {
+    $query: if(
+        type-of($raw-query) == 'string',
+        unquote($raw-query),
+        inspect($raw-query)
+    );
+
+    @media #{$query} {
+      @content;
+    }
+  } @else {
+    @error 'No value found for `#{$breakpoint}`. '
+         + 'Please make sure it is defined in `$breakpoints` map.';
+  }
+}
+
+/// Helper to size an element
+/// @access public
+/// @param {Length} $width
+/// @param {Length} $height
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+/// Helper to convert font-size to rem with fallback
+/// @param {Length} $size - in px
+/// @param {Length} $context - in px
+/// @requires $font-size-base
+$font-size-base: 16px !default;
+@mixin font-size($size, $context: $font-size-base) {
+  @if (unitless($size)) {
+    $size: $size * 1px;
+  }
+
+  font-size: $size; // fallback
+  font-size: #{$size / $context}rem;
+}
+
+/// Helper to Create Font-face block and variants
+/// @param {String} $name - font name (eg: Arial, Helvetica, sans-serif...)
+/// @param {String} $path - path to the font file without extension
+/// @param {Integer} $number - font-weight value in number (eg: normal=400, bold=700...)
+/// @param {String} $style - font-style value (eg: normal, italic, oblique...)
+/// @param {String} $exts - file extensions in a space separated list
+/// @requires str-replace()
+@mixin font-face($name, $path, $weight: 400, $style: normal, $exts: eot woff2 woff ttf svg) {
+  $src: null;
+
+  $extmods: (
+    eot: "?#iefix",
+    svg: "#" + str-replace($name, " ", "")
+  );
+
+  $formats: (
+    eot: "embedded-opentype",
+    otf: "opentype",
+    ttf: "truetype"
+  );
+
+  @each $ext in $exts {
+    $extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
+    $format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+    $src: append($src, url(quote($path + "." + $extmod)) format(quote($format)), comma);
+  }
+
+  @font-face {
+    font-family: quote($name);
+    font-style: $style;
+    font-weight: $weight;
+    @if (map-has-key($extmods, 'eot')) {
+      src: url(quote($path + ".eot"));
+    };
+    src: $src;
+  }
+}
+
+/// Mixin to style inputs placeholders
+@mixin input-placeholder {
+  &::-webkit-input-placeholder {
+    @content
+  }
+  &::-moz-placeholder {
+    @content
+  }
+  &::-moz-placeholder {
+    @content
+  }
+  &::-ms-input-placeholder {
+    @content
+  }
+}
+
+///Helper to create better transition
+/// @param {String} $duration - in milliseconds (ms or s)
+/// @param {String} $type - transition type (default: linear)
+/// @param {String} $property - property name (default: all)
+/// @requires $transition-duration, $transition-type
+$transition-duration: 300ms !default;
+$transition-type: cubic-bezier(0.25, 0.46, 0.45, 0.94) !default;
+@mixin transition($duration: $transition-duration, $type: $transition-type, $property: all) {
+  transition: $property $duration $type;
+}
+
+/// Helper to center element
+/// @param {String} $position (default: absolute)
+@mixin center-h($position: absolute) {
+  position: $position;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@mixin center-v($position: absolute) {
+  position: $position;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+@mixin center-h-v($position: absolute) {
+  position: $position;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
