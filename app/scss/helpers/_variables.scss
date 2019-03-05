@@ -7,7 +7,7 @@ $screen-lg: 1200px; // @respond-to ('huge') and overwrite bootstrap grid. Overwr
 
 $font-size-base: 14px; // required by rem() mixins
 $transition-duration: 500ms; // required by transition() mixins
-$icomoon-font-path: '../../fonts/icon-xxx';
+$icomoon-font-path: '../../app/fonts/icon' !default;
 
 //-------------------------------------------------------------------//
 
@@ -19,11 +19,12 @@ $icomoon-font-path: '../../fonts/icon-xxx';
 $color-key: 'base' !default;
 $colors: (
   'primary': (
-    'base': #f3e35b,
+    'base': #825794,
     'invert': #1e1e1e
   ),
   'secondary': (
-    'base': #1e1e1e,
+    'base': #2687c0,
+    'active': #ffbb4d,
     'invert': #fff
   ),
   'foreground':(
@@ -65,7 +66,7 @@ $fonts: (
     'base': ('Rajdhani', sans-serif),
   ),
   'icon': (
-    'base':('icon-scuf')
+    'base':('icomoon')
   )
 );
 

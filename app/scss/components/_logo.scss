@@ -1,0 +1,12 @@
+.logo {
+  display: flex;
+  align-items: center;
+
+  &::after {
+    display: block;
+    content: $icon-IcoMoon;
+    font-family: font('icon');
+    color: color('gray');
+    font-size: 34px;
+  }
+}

@@ -117,8 +117,8 @@ gulp.task('scripts-prod', function (done) {
  * Compile/watch app with development restrictions
  */
 gulp.task('watch', function () {
-  gulp.watch(DIR.src + '/scss/**/*.+(scss|sass)', ['styles']);
-  gulp.watch(DIR.src + '/js/**/*.js', ['scripts']);
+  gulp.watch(DIR.src + '/scss/**/*.+(scss|sass)', gulp.series('styles'));
+  gulp.watch(DIR.src + '/js/**/*.js', gulp.series('scripts'));
 });
 
 /**
